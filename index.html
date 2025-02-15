@@ -10,7 +10,19 @@
     font-family: digit;
     src: url('digital-7_mono.ttf') format("truetype");
 }
+
+#icon {
+    cursor: pointer;
+    font-size: 3em;
+    color: red;
+    transition: transform 0.3s ease-in-out;
+}
+
+#icon:hover {
+    transform: scale(1.2);
+}
 </style>
+
 <link href="css/default.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/garden.js"></script>
@@ -48,7 +60,7 @@
             Now If you want to accept my proposal, touch the heart below<br />
             <br>
             <span id="heartspan">
-                <i class="fas fa-heart" id="icon" style="cursor: pointer; font-size: 2em; color: red;"></i>
+                <i class="fas fa-heart" id="icon"></i>
             </span>
         </div>
         <div id="loveHeart">
@@ -56,7 +68,7 @@
             <div id="words">
                 <div id="messages">
                     वर्षा ऋतु FOREVER
-                    <div id="elapseClock"></div>
+                    <div id="elapseClock">00:00:00</div>  <!-- Timer is restored -->
                 </div>
                 <div id="loveu">
                     I LOVE YOU SO MUCH<br/>
@@ -70,7 +82,7 @@
 <script type="text/javascript">
 var offsetX = $("#loveHeart").width() / 2;
 var offsetY = $("#loveHeart").height() / 2 - 55;
-var together = null; // Set to null initially
+var together = null; // Initially null so timer starts only on click
 var timerInterval = null; // Store interval reference
 
 if (!document.createElement('canvas').getContext) {
@@ -78,21 +90,28 @@ if (!document.createElement('canvas').getContext) {
     msg.id = "errorMsg";
     msg.innerHTML = "Your browser doesn't support HTML5!<br/>Recommend use Chrome 14+/IE 9+/Firefox 7+/Safari 4+"; 
     document.body.appendChild(msg);
-    $("#code").css("display", "none")
+    $("#code").css("display", "none");
     $("#copyright").css("position", "absolute");
     $("#copyright").css("bottom", "10px");
     document.execCommand("stop");
+} else {
+    setTimeout(function () {
+        startHeartAnimation();  // Bringing back the heart animation 💖
+    }, 5000);
+
+    adjustCodePosition();
+    $("#code").typewriter();  // Bringing back the typewriter effect ✍️
 }
 
-// Function to start counting from 0
+// Function to start counting from 0 when the heart is clicked
 function startTimerFromZero() {
-    together = new Date(); // Set to current time when heart is clicked
+    together = new Date(); // Set to the current moment
 
     if (timerInterval) {
-        clearInterval(timerInterval); // Clear previous interval if it exists
+        clearInterval(timerInterval); // Clear existing interval if any
     }
 
-    timeElapse(together); // Immediately update UI
+    timeElapse(together); // Update UI immediately
     timerInterval = setInterval(function () {
         timeElapse(together);
     }, 500);
