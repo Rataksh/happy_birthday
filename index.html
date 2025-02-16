@@ -3,10 +3,10 @@
 <head>
     <script src="https://kit.fontawesome.com/a14ae32021.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+    
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Happy Birthday Bianca!</title>
-
+    
     <style type="text/css">
         @font-face {
             font-family: digit;
@@ -37,56 +37,45 @@
             transform: translateX(-50%);
         }
 
-		#words{font-family:"sans-serif";width:500px;font-size:24px;color:#666}
-		#timer {
+        #words{font-family:"sans-serif";width:500px;font-size:24px;color:#666}
+        #timer {
             text-align:center;font-size:30px;margin-top:10px;margin-bottom:10px
         }
 
-		#startBtn{font-size: 48px;color: red;margin: 50 px; align-content: center;}
-		#msg{margin-bottom:25px}
-		#timer .digit{font-family:"digit";font-size:35px;text-align: center;}
-		</style>
+        #startBtn{font-size: 48px;color: red;margin: 50px; cursor: pointer;}
+        #msg{margin-bottom:25px}
+        #timer .digit{font-family:"digit";font-size:35px;text-align: center;}
+    </style>
 
     <link href="css/default.css" type="text/css" rel="stylesheet">
 </head>
 
 <body>
-
     <div id="mainDiv">
         <div id="content">
             <div id="code">
                 Hellyo,<br />
-				I don't know how to do this, so bear with me <br>
-				<br>
-				<br>
-				On this special occassion of your birthday<br>
-				(will be easier to remember lol) - ab kalesh mat kario ispe, <br>
-				I would like to complete this long overdue task of PROPOSING YOU <br>
-				I think it's high time we made it official, right?<br>
-				<br>
-				Anyway, thank you Bhumica for coming in my life so unexpectedly and making it better <br>
-				From Rockstar to Kal ho na ho, we came a long way(wish the film was longer too)<br>
-				and we have a long way to go too<br>
-				<br>
-				So, to fire the starting gun for this long journey, <br>
-				what you have here is a full blown official proposal <br>
-				which you can accept(you don't really have another choice lol) by clicking this red heart on your right<br>
-				and start this timer so you can look at it later and remember the time when you made your best decision(haha)<br>
+                I don't know how to do this, so bear with me <br>
                 <br>
-				Oh! Also, Happy Birthday to you! Send me a picture in that red dress(;
-                
+                <br>
+                On this special occasion of your birthday,<br>
+                (will be easier to remember lol) - ab kalesh mat kario ispe, <br>
+                I would like to complete this long overdue task of PROPOSING YOU <br>
+                I think it's high time we made it official, right?<br>
+                <br>
+                So, to fire the starting gun for this long journey, <br>
+                what you have here is a full-blown official proposal <br>
+                which you can accept(you don't really have another choice lol) by clicking this red heart on your right.<br>
+                <br>
+                <br>
+                Oh! Also, Happy Birthday to you! Send me a picture in that red dress(;
             </div>
             <div id="loveHeart">
                 <canvas id="garden"></canvas>
                 <div id="words">
                     <div id="messages">
-						<div id="msg">
-                        Do you accept my proposal?
-						
-						</div>
-						<i class="fas fa-heart" id="startBtn">
-							YES!
-						</i>
+                        <div id="msg">Do you accept my proposal?</div>
+                        <i class="fas fa-heart" id="startBtn"> YES! </i>
                         <div id="timer">0 <span class="digit">days</span> 00<span class="digit"> hours</span> 00 <span class="digit">minutes</span> 00 <span class="digit">seconds</span></div>
                     </div>
                 </div>
@@ -98,81 +87,44 @@
     <script type="text/javascript" src="js/functions.js"></script>
 
     <script type="text/javascript">
-        document.addEventListener("DOMContentLoaded", function() {
-            console.log("✅ DOM is fully loaded!");
-
-            // Define offsetX and offsetY for heart animation
-            window.offsetX = $("#loveHeart").width() / 2;
-            window.offsetY = $("#loveHeart").height() / 2 - 55;
-
-            let heart = document.getElementById("icon");
-
-            if (heart) {
-                console.log("✅ Heart element found!");
-                heart.addEventListener("click", function() {
-                    console.log("❤️ Heart clicked! Timer should start now.");
-                    startTimerFromZero();
-                });
-            } else {
-                console.error("❌ ERROR: Heart element (#icon) not found!");
-            }
-
-            // 🔥 Start Heart Animation
-            if (typeof startHeartAnimation === "function") {
-                setTimeout(startHeartAnimation, 3000);
-                console.log("💖 Heart animation started!");
-            } else {
-                console.error("❌ ERROR: startHeartAnimation function not found!");
-            }
-
-            // 🔥 Start Typewriter Effect
-            if ($("#code").length > 0 && typeof $("#code").typewriter === "function") {
-                $("#code").typewriter();
-                console.log("✍️ Typewriter effect applied!");
-            } else {
-                console.error("❌ ERROR: Typewriter effect not found!");
-            }
-        });
-
-		let timerInterval; 
-        let startTime = null; 
-
+        let timerInterval;
+        let startTime = localStorage.getItem("startTime");
+        
         function startTimer() {
-            if (timerInterval) {
-                clearInterval(timerInterval); // Clear existing timer
-                console.log("⏹ Timer Reset!");
+            if (!startTime) {
+                startTime = new Date().getTime();
+                localStorage.setItem("startTime", startTime);
             }
-
-            startTime = new Date(); // Set the start time
-            console.log("⏳ Timer started at:", startTime);
-
-            timerInterval = setInterval(updateTimer, 1000); // Start interval
+            if (timerInterval) {
+                clearInterval(timerInterval);
+            }
+            timerInterval = setInterval(updateTimer, 1000);
+        }
+        
+        function updateTimer() {
+            let currentTime = new Date().getTime();
+            let elapsedTime = Math.floor((currentTime - startTime) / 1000);
+            
+            let days = Math.floor(elapsedTime / 86400);
+            let hours = Math.floor((elapsedTime % 86400) / 3600);
+            let minutes = Math.floor((elapsedTime % 3600) / 60);
+            let seconds = elapsedTime % 60;
+            
+            document.getElementById("timer").innerHTML = `
+                <span>${days}</span> <span class="digit">days </span>
+                <span>${hours < 10 ? "0" : ""}${hours}</span> <span class="digit">hours </span>
+                <span>${minutes < 10 ? "0" : ""}${minutes}</span> <span class="digit">minutes </span>
+                <span>${seconds < 10 ? "0" : ""}${seconds}</span> <span class="digit">seconds</span>
+            `;
         }
 
-		function updateTimer() {
-    let currentTime = new Date();
-    let elapsedTime = Math.floor((currentTime - startTime) / 1000);
-
-    let days = Math.floor(elapsedTime / 86400);
-    let hours = Math.floor((elapsedTime % 86400) / 3600);
-    let minutes = Math.floor((elapsedTime % 3600) / 60);
-    let seconds = elapsedTime % 60;
-
-    let formattedTime = `
-        <span>${days}</span> <span class=\"digit\">days </span>
-        <span>${hours < 10 ? "0" : ""}${hours}</span> <span class=\"digit\">hours </span>
-        <span>${minutes < 10 ? "0" : ""}${minutes}</span> <span class=\"digit\">minutes </span>
-        <span>${seconds < 10 ? "0" : ""}${seconds}</span> <span class=\"digit\">seconds</span>
-    `;
-
-    document.getElementById("timer").innerHTML = formattedTime;
-}
-
-
-
-        document.getElementById("startBtn").addEventListener("click", startTimer);
-
+        document.getElementById("startBtn").addEventListener("click", function() {
+            startTimer();
+        });
+        
+        if (startTime) {
+            startTimer();
+        }
     </script>
-
 </body>
 </html>
