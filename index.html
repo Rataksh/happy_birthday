@@ -39,12 +39,12 @@
 
 		#words{font-family:"sans-serif";width:500px;font-size:24px;color:#666}
 		#timer {
-            text-align:center;font-size:30px;margin-top:10px;margin-bottom:10px
+            text-align:center;font-size:25px;margin-top:10px;margin-bottom:10px
         }
 
 		#startBtn{font-size: 48px;color: red;margin: 50 px; align-content: center;}
 		#msg{margin-bottom:25px}
-		#timer .digit{font-family:"digit";font-size:35px;text-align: center;}
+		#timer .digit{font-family:"digit";font-size:30px;text-align: center;}
 		</style>
 
     <link href="css/default.css" type="text/css" rel="stylesheet">
@@ -87,7 +87,7 @@
 						<i class="fas fa-heart" id="startBtn">
 							YES!
 						</i>
-                        <div id="timer">0 <span class="digit">days</span> 00<span class="digit"> hours</span> 00 <span class="digit">minutes</span> 00 <span class="digit">seconds</span></div>
+                        <div id="timer">0 <span class="digit">days</span> 00<span class="digit"> hours</span><br> 00 <span class="digit">minutes</span> 00 <span class="digit">seconds</span></div>
                     </div>
                 </div>
             </div>
@@ -166,7 +166,7 @@ function updateTimer() {
 
     let formattedTime = `
         <span>${days}</span> <span class="digit">days</span> 
-        <span>${hours.toString().padStart(2, "0")}</span> <span class="digit">hours</span> 
+        <span>${hours.toString().padStart(2, "0")}</span> <span class="digit">hours</span> <br>
         <span>${minutes.toString().padStart(2, "0")}</span> <span class="digit">minutes</span> 
         <span>${seconds.toString().padStart(2, "0")}</span> <span class="digit">seconds</span>
     `;
