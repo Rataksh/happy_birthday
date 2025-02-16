@@ -1,104 +1,178 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<script src="https://kit.fontawesome.com/a14ae32021.js" crossorigin="anonymous"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>This one is for my Varchhu</title>
+    <script src="https://kit.fontawesome.com/a14ae32021.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-<style type="text/css">
-@font-face {
-	font-family: digit;
-	src: url('digital-7_mono.ttf') format("truetype");
-}
-</style>
-<link href="css/default.css" type="text/css" rel="stylesheet">
-<script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/garden.js"></script>
-<script type="text/javascript" src="js/functions.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Happy Birthday Bianca!</title>
 
+    <style type="text/css">
+        @font-face {
+            font-family: digit;
+            src: url('digital-7_mono.ttf') format("truetype");
+        }
+
+        #icon {
+            cursor: pointer;
+            font-size: 3em;
+            color: red;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        #icon:hover {
+            transform: scale(1.2);
+        }
+
+        #loveHeart {
+            width: 100%;
+            text-align: center;
+            margin-top: 15px;
+            position: relative;
+        }
+
+        canvas {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+		#words{font-family:"sans-serif";width:500px;font-size:24px;color:#666}
+		#timer {
+            text-align:center;font-size:30px;margin-top:10px;margin-bottom:10px
+        }
+
+		#startBtn{font-size: 48px;color: red;margin: 50 px; align-content: center;}
+		#msg{margin-bottom:25px}
+		#timer .digit{font-family:"digit";font-size:35px;text-align: center;}
+		</style>
+
+    <link href="css/default.css" type="text/css" rel="stylesheet">
 </head>
 
 <body>
 
-<div id="mainDiv">
-	<div id="content">
-		<div id="code">
-			<span class="comments">/**</span><br />
-			<span class="space"/><span class="comments">*THE CODE OF LOVE</span><br />
-			<span class="space"/><span class="comments">*/</span><br />
-			Hey Girl !<br />
-			Do you remember the day we first met?<br />
-			<span class="comments">// The ET-LAB Friday. </span><br />
-			Since that day a spark begun;<br />
-			<span class="comments">// Your face Your Voice Your Words.</span><br />
-			Your everything got imprinted in my heart;<br />
-			As the time went on;<br />
-			The Bond grew stronger and stronger;<br />
-			Journey from Infatuation to Love;<br />
-			We have traveled a long way together;<br />
-			There have been fights ;<br />
-			<span class="comments">// And I'm sure there will be more.</span><br />
-			But our Bond will always grow back Stronger;<br />
-			<br>
-			<br>
-			All I want to say is:<br />
-			Baby, I will love you forever;<br />
-			<br>
-			<br>
-			Now If you want to hug me you can touch the heart below<br />
-			<br>
-			<span id="heartspan">
-			<a href="image.jpg"><i class="fas fa-heart" id="icon"></i></a>
-			</span>
-		</div>
-		<div id="loveHeart">
-			<canvas id="garden"></canvas>
-			<div id="words">
-				<div id="messages">
-					वर्षा ऋतु FOREVER
-					<div id="elapseClock"></div>
-				</div>
-				<div id="loveu">
-					I LOVE YOU SO MUCH<br/>
-					<div class="signature">- RITVIK</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+    <div id="mainDiv">
+        <div id="content">
+            <div id="code">
+                Hellyo,<br />
+				I don't know how to do this, so bear with me <br>
+				<br>
+				<br>
+				On this special occassion of your birthday<br>
+				(will be easier to remember lol) - ab kalesh mat kario ispe, <br>
+				I would like to complete this long overdue task of PROPOSING YOU <br>
+				I think it's high time we made it official, right?<br>
+				<br>
+				Anyway, thank you Bhumica for coming in my life so unexpectedly and making it better <br>
+				From Rockstar to Kal ho na ho, we came a long way(wish the film was longer too)<br>
+				and we have a long way to go too<br>
+				<br>
+				So, to fire the starting gun for this long journey, <br>
+				what you have here is a full blown official proposal <br>
+				which you can accept(you don't really have another choice lol) by clicking this red heart on your right<br>
+				and start this timer so you can look at it later and remember the time when you made your best decision(haha)<br>
+                <br>
+				Oh! Also, Happy Birthday to you! Send me a picture in that red dress(;
+                
+            </div>
+            <div id="loveHeart">
+                <canvas id="garden"></canvas>
+                <div id="words">
+                    <div id="messages">
+						<div id="msg">
+                        Do you accept my proposal?
+						
+						</div>
+						<i class="fas fa-heart" id="startBtn">
+							YES!
+						</i>
+                        <div id="timer">0 <span class="digit">days</span> 00<span class="digit"> hours</span> 00 <span class="digit">minutes</span> 00 <span class="digit">seconds</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<script type="text/javascript">
-var offsetX = $("#loveHeart").width() / 2;
-var offsetY = $("#loveHeart").height() / 2 - 55;
-var together = new Date();
-together.setFullYear(2016, 8, 5);
-together.setHours(16);
-together.setMinutes(30);
-together.setSeconds(0);
-together.setMilliseconds(0);
+    <script type="text/javascript" src="js/garden.js"></script>
+    <script type="text/javascript" src="js/functions.js"></script>
 
-if (!document.createElement('canvas').getContext) {
-	var msg = document.createElement("div");
-	msg.id = "errorMsg";
-	msg.innerHTML = "Your browser doesn't support HTML5!<br/>Recommend use Chrome 14+/IE 9+/Firefox 7+/Safari 4+"; 
-	document.body.appendChild(msg);
-	$("#code").css("display", "none")
-	$("#copyright").css("position", "absolute");
-	$("#copyright").css("bottom", "10px");
-	document.execCommand("stop");
-} else {
-	setTimeout(function () {
-		startHeartAnimation();
-	}, 5000);
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function() {
+            console.log("✅ DOM is fully loaded!");
 
-	timeElapse(together);
-	setInterval(function () {
-		timeElapse(together);
-	}, 500);
+            // Define offsetX and offsetY for heart animation
+            window.offsetX = $("#loveHeart").width() / 2;
+            window.offsetY = $("#loveHeart").height() / 2 - 55;
 
-	adjustCodePosition();
-	$("#code").typewriter();
+            let heart = document.getElementById("icon");
+
+            if (heart) {
+                console.log("✅ Heart element found!");
+                heart.addEventListener("click", function() {
+                    console.log("❤️ Heart clicked! Timer should start now.");
+                    startTimerFromZero();
+                });
+            } else {
+                console.error("❌ ERROR: Heart element (#icon) not found!");
+            }
+
+            // 🔥 Start Heart Animation
+            if (typeof startHeartAnimation === "function") {
+                setTimeout(startHeartAnimation, 3000);
+                console.log("💖 Heart animation started!");
+            } else {
+                console.error("❌ ERROR: startHeartAnimation function not found!");
+            }
+
+            // 🔥 Start Typewriter Effect
+            if ($("#code").length > 0 && typeof $("#code").typewriter === "function") {
+                $("#code").typewriter();
+                console.log("✍️ Typewriter effect applied!");
+            } else {
+                console.error("❌ ERROR: Typewriter effect not found!");
+            }
+        });
+
+		let timerInterval; 
+        let startTime = null; 
+
+        function startTimer() {
+            if (timerInterval) {
+                clearInterval(timerInterval); // Clear existing timer
+                console.log("⏹ Timer Reset!");
+            }
+
+            startTime = new Date(); // Set the start time
+            console.log("⏳ Timer started at:", startTime);
+
+            timerInterval = setInterval(updateTimer, 1000); // Start interval
+        }
+
+		function updateTimer() {
+    let currentTime = new Date();
+    let elapsedTime = Math.floor((currentTime - startTime) / 1000);
+
+    let days = Math.floor(elapsedTime / 86400);
+    let hours = Math.floor((elapsedTime % 86400) / 3600);
+    let minutes = Math.floor((elapsedTime % 3600) / 60);
+    let seconds = elapsedTime % 60;
+
+    let formattedTime = `
+        <span>${days}</span> <span class=\"digit\">days </span>
+        <span>${hours < 10 ? "0" : ""}${hours}</span> <span class=\"digit\">hours </span>
+        <span>${minutes < 10 ? "0" : ""}${minutes}</span> <span class=\"digit\">minutes </span>
+        <span>${seconds < 10 ? "0" : ""}${seconds}</span> <span class=\"digit\">seconds</span>
+    `;
+
+    document.getElementById("timer").innerHTML = formattedTime;
 }
-</script>
+
+
+
+        document.getElementById("startBtn").addEventListener("click", startTimer);
+
+    </script>
+
 </body>
 </html>
